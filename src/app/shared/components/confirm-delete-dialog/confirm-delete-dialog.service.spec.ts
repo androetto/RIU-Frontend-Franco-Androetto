@@ -27,7 +27,7 @@ describe('ConfirmDialogService', () => {
 
   it('should open dialog and return true when confirmed', () => {
     const dialogRefMock = jasmine.createSpyObj('MatDialogRef', ['afterClosed']);
-    dialogRefMock.afterClosed.and.returnValue(of(true)); // Simulamos que el usuario confirma la acción
+    dialogRefMock.afterClosed.and.returnValue(of(true));
 
     dialogMock.open.and.returnValue(dialogRefMock);
 
@@ -40,7 +40,7 @@ describe('ConfirmDialogService', () => {
 
   it('should open dialog and return false when canceled', () => {
     const dialogRefMock = jasmine.createSpyObj('MatDialogRef', ['afterClosed']);
-    dialogRefMock.afterClosed.and.returnValue(of(false)); // Simulamos que el usuario cancela la acción
+    dialogRefMock.afterClosed.and.returnValue(of(false));
 
     dialogMock.open.and.returnValue(dialogRefMock);
 
