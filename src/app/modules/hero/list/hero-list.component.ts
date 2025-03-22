@@ -3,7 +3,6 @@ import {
   computed,
   effect,
   inject,
-  OnInit,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';

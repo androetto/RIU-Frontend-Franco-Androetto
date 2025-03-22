@@ -1,4 +1,9 @@
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  fakeAsync,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
 import { HeroComponent } from './hero.component';
 import { HeroService } from '../../../core/hero/hero.service';
 import { LoadingService } from '../../../shared/services/loading.service';
@@ -52,13 +57,13 @@ describe('HeroComponent', () => {
     const heroName = 'New Hero';
     component.heroForm.controls['name'].setValue(heroName);
     component.onSubmit();
-  
-    // timeout for loading 
+
+    // timeout for loading
     tick(2000);
-  
+
     const heroes = heroService.getHeroes();
     expect(heroes.length).toBe(3);
-  
+
     const newHero = heroes.find(hero => hero.name === heroName);
     expect(newHero).toBeTruthy();
     expect(newHero?.name).toBe(heroName);
@@ -68,12 +73,12 @@ describe('HeroComponent', () => {
     const heroId = 2;
     const newHeroName = 'Updated Hero';
     component.heroForm.patchValue({ id: heroId, name: newHeroName });
-  
+
     component.onSubmit();
 
-    // timeout for loading 
+    // timeout for loading
     tick(2000);
-  
+
     const heroes = heroService.getHeroes();
     const updatedHero = heroes.find(hero => hero.id === heroId);
     expect(updatedHero?.name).toBe(newHeroName);
