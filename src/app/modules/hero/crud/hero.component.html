@@ -1,0 +1,29 @@
+<div class="container">
+  <form (ngSubmit)="onSubmit()" [formGroup]="heroForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Hero Name</mat-label>
+      <input matInput formControlName="name" required />
+      <mat-error *ngIf="heroForm.get('name')?.hasError('required')">
+        Name is required
+      </mat-error>
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="secondary"
+      type="button"
+      (click)="goToList()"
+    >
+      Back
+    </button>
+
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="heroForm.invalid"
+    >
+      {{ heroForm.value.id ? "Edit Hero" : "Add Hero" }}
+    </button>
+  </form>
+</div>

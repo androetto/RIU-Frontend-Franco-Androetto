@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { HeroListComponent } from './list/hero-list.component';
 import { HeroComponent } from './crud/hero.component';
 
-export default [
+export const HERO_ROUTES: Routes = [
   {
     path: '',
     component: HeroListComponent
@@ -23,4 +23,4 @@ export default [
     path: 'view/:id',
     component: HeroComponent
   }
-] as Routes;
+];
