@@ -2,7 +2,7 @@
   <form (ngSubmit)="onSubmit()" [formGroup]="heroForm">
     <mat-form-field appearance="fill">
       <mat-label>Hero Name</mat-label>
-      <input matInput formControlName="name" required />
+      <input matInput formControlName="name" required appUppercase/>
       <mat-error *ngIf="heroForm.get('name')?.hasError('required')">
         Name is required
       </mat-error>

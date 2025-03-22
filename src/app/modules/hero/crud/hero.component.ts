@@ -6,7 +6,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { HeroService } from '../../../core/hero/hero.service';
-import { LoadingService } from '../../../core/loading.service';
+import { LoadingService } from '../../../shared/services/loading.service';
+import { UppercaseDirective } from '../../../shared/directives/uppercase.directive';
 
 @Component({
   selector: 'app-hero',
@@ -17,7 +18,8 @@ import { LoadingService } from '../../../core/loading.service';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    UppercaseDirective
   ]
 })
 export class HeroComponent implements OnInit {
