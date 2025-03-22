@@ -54,7 +54,7 @@ describe('HeroListComponent', () => {
 
   it('should display the list of heroes', () => {
     const rows = fixture.nativeElement.querySelectorAll('tr.mat-row');
-    expect(rows.length).toBe(2); // Hay dos héroes mockeados
+    expect(rows.length).toBe(2);
     expect(rows[0].textContent).toContain('Mock Hero 1');
     expect(rows[1].textContent).toContain('Mock Hero 2');
   });
@@ -62,6 +62,7 @@ describe('HeroListComponent', () => {
   it('should call goToEdit when edit button is clicked', () => {
     spyOn(component, 'goToEdit');
     const editButton = fixture.nativeElement.querySelectorAll('mat-icon-button')[0];
+    fixture.detectChanges();
     editButton.click();
     expect(component.goToEdit).toHaveBeenCalledWith(1);
   });
