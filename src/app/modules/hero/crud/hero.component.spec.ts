@@ -67,12 +67,13 @@ describe('HeroComponent', () => {
   it('should edit a hero', fakeAsync(() => {
     const heroId = 2;
     const newHeroName = 'Updated Hero';
-    component.heroForm.controls['name'].setValue(newHeroName);
+    component.heroForm.patchValue({ id: heroId, name: newHeroName });
+  
     component.onSubmit();
 
     // timeout for loading 
     tick(2000);
-
+  
     const heroes = heroService.getHeroes();
     const updatedHero = heroes.find(hero => hero.id === heroId);
     expect(updatedHero?.name).toBe(newHeroName);
