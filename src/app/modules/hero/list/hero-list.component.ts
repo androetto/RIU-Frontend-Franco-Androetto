@@ -58,7 +58,7 @@ export class HeroListComponent {
   searchText: string = '';
 
   heroes = effect(() => {
-    const heroesList = this.heroService.getHeros();
+    const heroesList = this.heroService.getHeroes();
     this.dataSource.data = heroesList;
     setTimeout(() => {
       if (this.paginator) {
@@ -66,7 +66,7 @@ export class HeroListComponent {
       }
     });
   });
-  heroesLength = computed(() => this.heroService.getHeros().length);
+  heroesLength = computed(() => this.heroService.getHeroes().length);
 
   applyFilter(event: Event): void {
     const input = event.target as HTMLInputElement;

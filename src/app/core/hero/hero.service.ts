@@ -14,30 +14,31 @@ export class HeroService {
     return (maxId + 1);
   }
 
-  public getHeros = computed(() => {
+  public getHeroes = computed(() => {
     const filter = this.searchText().trim().toLowerCase();
     return this.heroesSignal().filter(hero =>
       hero.name.toLowerCase().includes(filter)
     );
   });
+
   setFilterText(text: string) {
     this.searchText.set(text);
   }
 
-  async addHero(heroName: string) {
+  addHero(heroName: string) {
     const newHero = {
       name: heroName,
       id: this.generateUniqueId(),
     };
-    this.heroesSignal.update(heros => ([...heros, newHero]));
+    this.heroesSignal.update(hero => ([...hero, newHero]));
   }
 
-  async deleteHero(heroId: number) {
-    this.heroesSignal.update(heros => heros.filter(hero =>
+  deleteHero(heroId: number) {
+    this.heroesSignal.update(heroes => heroes.filter(hero =>
       hero.id !== heroId));
   }
 
-  async editHero(heroId: number, heroName: string) {
+  editHero(heroId: number, heroName: string) {
     const updatedHeroes = this.heroesSignal().map(hero =>
       hero.id === heroId ? { ...hero, name: heroName } : hero
     );
