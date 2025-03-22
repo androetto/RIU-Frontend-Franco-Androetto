@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { HeroListComponent } from './hero-list.component';
 import { HeroService } from '../../../core/hero/hero.service';
 import { Router } from '@angular/router';
@@ -66,12 +66,16 @@ describe('HeroListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should display the list of heroes', () => {
+  it('should display the list of heroes', fakeAsync(() => {
+
+    tick();
+    fixture.detectChanges();
+
     const rows = fixture.nativeElement.querySelectorAll('tr.mat-row');
     expect(rows.length).toBe(2);
     expect(rows[0].textContent).toContain('Mock Hero 1');
     expect(rows[1].textContent).toContain('Mock Hero 2');
-  });
+  }));
 
   it('should call goToEdit when edit button is clicked', () => {
     spyOn(component, 'goToEdit');
