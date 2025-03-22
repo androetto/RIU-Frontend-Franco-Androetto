@@ -16,7 +16,7 @@ import { MatIcon } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { HeroService } from '../../../core/hero/hero.service';
 import { Router } from '@angular/router';
-import { ConfirmDialogService } from '../../../shared/components/confirm-dialog/confirm-dialog.service';
+import { ConfirmDialogService } from '../../../shared/components/confirm-delete-dialog/confirm-delete-dialog.service';
 import { LoadingService } from '../../../shared/services/loading.service';
 @Component({
   selector: 'app-hero-list',

@@ -5,8 +5,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-confirm-dialog',
-  templateUrl: './confirm-dialog.component.html',
+  selector: 'app-confirm-delete-dialog',
+  templateUrl: './confirm-delete-dialog.component.html',
   standalone: true,
   imports: [
     CommonModule,
