@@ -8,14 +8,9 @@ import { CommonModule } from '@angular/common';
   selector: 'app-confirm-delete-dialog',
   templateUrl: './confirm-delete-dialog.component.html',
   standalone: true,
-  imports: [
-    CommonModule,
-    MatDialogModule,
-    MatButtonModule
-  ]
+  imports: [CommonModule, MatDialogModule, MatButtonModule],
 })
 export class ConfirmDialogComponent {
-
   constructor(
     public dialogRef: MatDialogRef<ConfirmDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any

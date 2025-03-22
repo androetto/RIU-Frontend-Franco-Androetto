@@ -4,16 +4,15 @@ import { Observable } from 'rxjs';
 import { ConfirmDialogComponent } from './confirm-delete-dialog.component';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ConfirmDialogService {
-
   constructor(private dialog: MatDialog) {}
 
   openConfirmDialog(message: string): Observable<boolean> {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '400px',
-      data: { message: message }
+      data: { message: message },
     });
 
     return dialogRef.afterClosed();

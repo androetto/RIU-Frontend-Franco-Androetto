@@ -3,15 +3,14 @@ import { Hero } from './hero.types';
 
 @Injectable({ providedIn: 'root' })
 export class HeroService {
-
   private heroesSignal = signal<Hero[]>([]);
   private searchText = signal<string>('');
 
   private generateUniqueId(): number {
-    const existingIds = this.heroesSignal().map((hero) => hero.id);
-    if(existingIds.length === 0) return 1;
+    const existingIds = this.heroesSignal().map(hero => hero.id);
+    if (existingIds.length === 0) return 1;
     const maxId = Math.max(...existingIds);
-    return (maxId + 1);
+    return maxId + 1;
   }
 
   public getHeroes = computed(() => {
@@ -30,12 +29,13 @@ export class HeroService {
       name: heroName,
       id: this.generateUniqueId(),
     };
-    this.heroesSignal.update(hero => ([...hero, newHero]));
+    this.heroesSignal.update(hero => [...hero, newHero]);
   }
 
   deleteHero(heroId: number) {
-    this.heroesSignal.update(heroes => heroes.filter(hero =>
-      hero.id !== heroId));
+    this.heroesSignal.update(heroes =>
+      heroes.filter(hero => hero.id !== heroId)
+    );
   }
 
   editHero(heroId: number, heroName: string) {
@@ -49,5 +49,4 @@ export class HeroService {
     const hero = this.heroesSignal().find(hero => hero.id === heroId);
     return hero;
   }
-
 }

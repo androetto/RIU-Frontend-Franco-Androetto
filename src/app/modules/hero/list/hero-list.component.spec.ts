@@ -27,13 +27,27 @@ describe('HeroListComponent', () => {
         MatPaginatorModule,
         MatButtonModule,
         MatIconModule,
-        NoopAnimationsModule
+        NoopAnimationsModule,
       ],
       providers: [
         { provide: HeroService, useClass: MockHeroService },
-        { provide: ConfirmDialogService, useValue: jasmine.createSpyObj('ConfirmDialogService', ['openConfirmDialog']) },
-        { provide: LoadingService, useValue: jasmine.createSpyObj('LoadingService', ['startLoading', 'stopLoading']) },
-        { provide: Router, useValue: { navigate: jasmine.createSpy('navigate') } }
+        {
+          provide: ConfirmDialogService,
+          useValue: jasmine.createSpyObj('ConfirmDialogService', [
+            'openConfirmDialog',
+          ]),
+        },
+        {
+          provide: LoadingService,
+          useValue: jasmine.createSpyObj('LoadingService', [
+            'startLoading',
+            'stopLoading',
+          ]),
+        },
+        {
+          provide: Router,
+          useValue: { navigate: jasmine.createSpy('navigate') },
+        },
       ],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
@@ -61,7 +75,8 @@ describe('HeroListComponent', () => {
 
   it('should call goToEdit when edit button is clicked', () => {
     spyOn(component, 'goToEdit');
-    const editButton = fixture.nativeElement.querySelectorAll('mat-icon-button')[0];
+    const editButton =
+      fixture.nativeElement.querySelectorAll('mat-icon-button')[0];
     fixture.detectChanges();
     editButton.click();
     expect(component.goToEdit).toHaveBeenCalledWith(1);
@@ -69,7 +84,8 @@ describe('HeroListComponent', () => {
 
   it('should call goToDelete when delete button is clicked', () => {
     spyOn(component, 'goToDelete');
-    const deleteButton = fixture.nativeElement.querySelectorAll('mat-icon-button')[1];
+    const deleteButton =
+      fixture.nativeElement.querySelectorAll('mat-icon-button')[1];
     deleteButton.click();
     expect(component.goToDelete).toHaveBeenCalledWith(1);
   });

@@ -14,8 +14,8 @@ describe('ConfirmDialogService', () => {
     TestBed.configureTestingModule({
       providers: [
         ConfirmDialogService,
-        { provide: MatDialog, useValue: dialogMock }
-      ]
+        { provide: MatDialog, useValue: dialogMock },
+      ],
     });
 
     service = TestBed.inject(ConfirmDialogService);
@@ -35,7 +35,10 @@ describe('ConfirmDialogService', () => {
       expect(result).toBe(true);
     });
 
-    expect(dialogMock.open).toHaveBeenCalledWith(ConfirmDialogComponent, jasmine.any(Object));
+    expect(dialogMock.open).toHaveBeenCalledWith(
+      ConfirmDialogComponent,
+      jasmine.any(Object)
+    );
   });
 
   it('should open dialog and return false when canceled', () => {

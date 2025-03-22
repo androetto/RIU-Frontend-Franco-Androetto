@@ -1,5 +1,10 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -19,8 +24,8 @@ import { UppercaseDirective } from '../../../shared/directives/uppercase.directi
     MatInputModule,
     MatButtonModule,
     ReactiveFormsModule,
-    UppercaseDirective
-  ]
+    UppercaseDirective,
+  ],
 })
 export class HeroComponent implements OnInit {
   heroForm: FormGroup;
@@ -31,13 +36,10 @@ export class HeroComponent implements OnInit {
 
   private fb = inject(FormBuilder);
 
-  constructor(
-    private _activatedRoute: ActivatedRoute,
-
-  ) {
+  constructor(private _activatedRoute: ActivatedRoute) {
     this.heroForm = this.fb.group({
       id: [''],
-      name: ['', Validators.required]
+      name: ['', Validators.required],
     });
   }
 
@@ -49,33 +51,30 @@ export class HeroComponent implements OnInit {
         if (hero) {
           this.heroForm.patchValue({
             id: hero.id,
-            name: hero.name
+            name: hero.name,
           });
         }
       });
     }
-    
   }
 
   onSubmit(): void {
     if (this.heroForm.valid) {
       const heroName = this.heroForm.value.name;
       const heroId = this.heroForm.value.id;
-      this.loadingService.startLoading(); 
+      this.loadingService.startLoading();
       setTimeout(() => {
         if (heroId) {
           this.heroService.editHero(heroId, heroName);
         } else {
           this.heroService.addHero(heroName);
         }
-  
+
         this.goToList();
         this.loadingService.stopLoading();
       }, 2000);
     }
   }
-  
-  
 
   goToList(): void {
     this.router.navigate(['/']);

@@ -4,7 +4,7 @@ import { UppercaseDirective } from './uppercase.directive';
 import { By } from '@angular/platform-browser';
 
 @Component({
-  template: `<input type="text" appUppercase />`
+  template: `<input type="text" appUppercase />`,
 })
 class TestComponent {}
 
@@ -14,12 +14,12 @@ describe('UppercaseDirective', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [UppercaseDirective], 
-      declarations: [TestComponent] 
+      imports: [UppercaseDirective],
+      declarations: [TestComponent],
     });
     fixture = TestBed.createComponent(TestComponent);
     inputElement = fixture.debugElement.query(By.directive(UppercaseDirective));
-    fixture.detectChanges(); 
+    fixture.detectChanges();
   });
 
   it('should create the directive', () => {
@@ -29,8 +29,8 @@ describe('UppercaseDirective', () => {
   it('should convert text input to uppercase', () => {
     const input = inputElement.nativeElement as HTMLInputElement;
     input.value = 'test';
-    input.dispatchEvent(new Event('input')); 
-    fixture.detectChanges(); 
+    input.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
 
     expect(input.value).toBe('TEST');
   });

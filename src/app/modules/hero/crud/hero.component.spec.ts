@@ -65,7 +65,7 @@ describe('HeroComponent', () => {
     component.onSubmit();
 
     const heroes = heroService.getHeroes();
-    const updatedHero = heroes.find((hero) => hero.id === heroId);
+    const updatedHero = heroes.find(hero => hero.id === heroId);
     expect(updatedHero?.name).toBe(newHeroName);
   });
 
@@ -74,7 +74,7 @@ describe('HeroComponent', () => {
     heroService.deleteHero(heroId);
 
     const heroes = heroService.getHeroes();
-    expect(heroes.find((hero) => hero.id === heroId)).toBeUndefined();
+    expect(heroes.find(hero => hero.id === heroId)).toBeUndefined();
   });
 
   it('should get hero by id', async () => {

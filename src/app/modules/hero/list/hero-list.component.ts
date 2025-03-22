@@ -84,7 +84,7 @@ export class HeroListComponent {
   goToDelete(heroId: number): void {
     const message = 'Are you sure you want to delete this hero?';
 
-    this.confirmDialogService.openConfirmDialog(message).subscribe((result) => {
+    this.confirmDialogService.openConfirmDialog(message).subscribe(result => {
       if (result) {
         this.loadingService.startLoading();
         setTimeout(() => {

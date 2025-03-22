@@ -5,22 +5,22 @@ import { HeroComponent } from './crud/hero.component';
 export const HERO_ROUTES: Routes = [
   {
     path: '',
-    component: HeroListComponent
+    component: HeroListComponent,
   },
   {
     path: 'new',
-    component: HeroComponent
+    component: HeroComponent,
   },
   {
     path: 'update/:id',
-    component: HeroComponent
+    component: HeroComponent,
   },
   {
     path: 'delete/:id',
-    component: HeroComponent
+    component: HeroComponent,
   },
   {
     path: 'view/:id',
-    component: HeroComponent
-  }
+    component: HeroComponent,
+  },
 ];

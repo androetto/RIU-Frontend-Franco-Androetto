@@ -29,5 +29,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Docker
 
 ```bash
-docker build -t angular-app .  
+docker build -t angular-app .
 docker run -d -p 80:80 angular-app
+```

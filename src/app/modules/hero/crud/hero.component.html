@@ -2,7 +2,7 @@
   <form (ngSubmit)="onSubmit()" [formGroup]="heroForm">
     <mat-form-field appearance="fill">
       <mat-label>Hero Name</mat-label>
-      <input matInput formControlName="name" required appUppercase/>
+      <input matInput formControlName="name" required appUppercase />
       <mat-error *ngIf="heroForm.get('name')?.hasError('required')">
         Name is required
       </mat-error>
@@ -12,8 +12,7 @@
       mat-raised-button
       color="secondary"
       type="button"
-      (click)="goToList()"
-    >
+      (click)="goToList()">
       Back
     </button>
 
@@ -21,9 +20,8 @@
       mat-raised-button
       color="primary"
       type="submit"
-      [disabled]="heroForm.invalid"
-    >
-      {{ heroForm.value.id ? "Edit Hero" : "Add Hero" }}
+      [disabled]="heroForm.invalid">
+      {{ heroForm.value.id ? 'Edit Hero' : 'Add Hero' }}
     </button>
   </form>
 </div>
