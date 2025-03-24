@@ -78,9 +78,6 @@ describe('HeroListComponent', () => {
 
     const rows = fixture.nativeElement.querySelectorAll('tr.mat-row');
 
-    console.log('Rows found:', rows.length);
-    console.log('Table content:', fixture.nativeElement.innerHTML);
-
     expect(rows.length).toBe(2);
     expect(rows[0].textContent).toContain('Mock Hero 1');
     expect(rows[1].textContent).toContain('Mock Hero 2');
