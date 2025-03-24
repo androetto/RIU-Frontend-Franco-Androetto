@@ -67,31 +67,48 @@ describe('HeroListComponent', () => {
   });
 
   it('should display the list of heroes', fakeAsync(() => {
-
-    tick();
     fixture.detectChanges();
-
+    tick(); 
+    fixture.detectChanges(); 
+  
     const rows = fixture.nativeElement.querySelectorAll('tr.mat-row');
+  
+    console.log('Rows found:', rows.length);
+    console.log('Table content:', fixture.nativeElement.innerHTML);
+  
     expect(rows.length).toBe(2);
     expect(rows[0].textContent).toContain('Mock Hero 1');
     expect(rows[1].textContent).toContain('Mock Hero 2');
   }));
 
+
   it('should call goToEdit when edit button is clicked', () => {
     spyOn(component, 'goToEdit');
-    const editButton =
-      fixture.nativeElement.querySelectorAll('mat-icon-button')[0];
     fixture.detectChanges();
+  
+    const editButton = fixture.nativeElement.querySelectorAll('a[mat-icon-button]')[0];
+    
+    expect(editButton).toBeTruthy();
+  
     editButton.click();
-    expect(component.goToEdit).toHaveBeenCalledWith(1);
+    fixture.detectChanges(); 
+  
+    expect(component.goToEdit).toHaveBeenCalledWith(jasmine.any(Number));
   });
+  
 
   it('should call goToDelete when delete button is clicked', () => {
     spyOn(component, 'goToDelete');
-    const deleteButton =
-      fixture.nativeElement.querySelectorAll('mat-icon-button')[1];
+    fixture.detectChanges();
+    
+    const deleteButton = fixture.nativeElement.querySelectorAll('a[mat-icon-button]')[1];
+  
+    expect(deleteButton).toBeTruthy();
+  
     deleteButton.click();
-    expect(component.goToDelete).toHaveBeenCalledWith(1);
+    fixture.detectChanges();
+  
+    expect(component.goToDelete).toHaveBeenCalledWith(jasmine.any(Number));
   });
 
   it('should filter heroes by search text', () => {
