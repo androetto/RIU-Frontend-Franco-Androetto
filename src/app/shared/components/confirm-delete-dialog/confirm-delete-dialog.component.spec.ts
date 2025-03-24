@@ -7,7 +7,6 @@ import {
 } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
 
 describe('ConfirmDialogComponent', () => {
   let component: ConfirmDialogComponent;
@@ -20,7 +19,7 @@ describe('ConfirmDialogComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ConfirmDialogComponent, MatDialogModule, MatButtonModule],
       providers: [
-        { provide: MAT_DIALOG_DATA, useValue: {} },
+        { provide: MAT_DIALOG_DATA, useValue: { message: 'Are you sure?' } },
         { provide: MatDialogRef, useValue: dialogRefSpy },
       ],
     }).compileComponents();
@@ -35,10 +34,10 @@ describe('ConfirmDialogComponent', () => {
   });
 
   it('should display the passed message', () => {
-    component.data = { message: 'Are you sure?' };
-    fixture.detectChanges();
-    const messageElement = fixture.nativeElement.querySelector('.message');
-    expect(messageElement.textContent).toBe('Are you sure?');
+    const messageElement = fixture.nativeElement.querySelector(
+      'mat-dialog-content p'
+    );
+    expect(messageElement.textContent.trim()).toBe('Are you sure?');
   });
 
   it('should call dialogRef.close(true) when onConfirm is called', () => {
@@ -52,14 +51,10 @@ describe('ConfirmDialogComponent', () => {
   });
 
   it('should have the correct buttons in the dialog', () => {
-    const cancelButton: DebugElement = fixture.debugElement.query(
-      By.css('button[mat-button]:first-child')
-    );
-    const confirmButton: DebugElement = fixture.debugElement.query(
-      By.css('button[mat-button]:last-child')
-    );
+    const buttons = fixture.debugElement.queryAll(By.css('button[mat-button]'));
 
-    expect(cancelButton.nativeElement.textContent).toBe('Cancel');
-    expect(confirmButton.nativeElement.textContent).toBe('Delete');
+    expect(buttons.length).toBe(2);
+    expect(buttons[0].nativeElement.textContent.trim()).toBe('Cancel');
+    expect(buttons[1].nativeElement.textContent.trim()).toBe('Delete');
   });
 });
