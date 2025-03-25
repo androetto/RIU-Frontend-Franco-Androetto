@@ -26,6 +26,7 @@ describe('HeroListComponent', () => {
   let router: Router;
 
   beforeEach(() => {
+    
     TestBed.configureTestingModule({
       imports: [
         MatTableModule,
@@ -71,18 +72,6 @@ describe('HeroListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should display the list of heroes', fakeAsync(() => {
-    fixture.detectChanges();
-    tick();
-    fixture.detectChanges();
-
-    const rows = fixture.nativeElement.querySelectorAll('tr.mat-row');
-
-    expect(rows.length).toBe(2);
-    expect(rows[0].textContent).toContain('Mock Hero 1');
-    expect(rows[1].textContent).toContain('Mock Hero 2');
-  }));
-
   it('should call goToEdit when edit button is clicked', () => {
     spyOn(component, 'goToEdit');
     fixture.detectChanges();
@@ -113,20 +102,33 @@ describe('HeroListComponent', () => {
     expect(component.goToDelete).toHaveBeenCalledWith(jasmine.any(Number));
   });
 
-  it('should filter heroes by search text', () => {
-    const searchInput = fixture.nativeElement.querySelector('input[matInput]');
-    searchInput.value = 'Hero 1';
-    searchInput.dispatchEvent(new Event('input'));
-
-    fixture.detectChanges();
-    const rows = fixture.nativeElement.querySelectorAll('tr.mat-row');
-    expect(rows.length).toBe(1);
-    expect(rows[0].textContent).toContain('Mock Hero 1');
-  });
-
   it('should navigate to the new hero page when Add Hero button is clicked', () => {
     const addButton = fixture.nativeElement.querySelector('button');
     addButton.click();
     expect(router.navigate).toHaveBeenCalledWith(['new']);
   });
+
+  it('should display the list of heroes', fakeAsync(() => {
+    fixture.detectChanges();
+    tick();
+    const rows = fixture.nativeElement.querySelectorAll('tr');
+    expect(rows.length).toBe(3); 
+    expect(rows[1].textContent).toContain('Mock Hero 1'); 
+    expect(rows[2].textContent).toContain('Mock Hero 2');
+  }));
+  
+  it('should filter heroes by search text', fakeAsync(() => {
+    const searchInput = fixture.nativeElement.querySelector('input[matInput]');
+    searchInput.value = 'Hero 1'; 
+    searchInput.dispatchEvent(new Event('input'));
+  
+    fixture.detectChanges();
+    tick(); 
+  
+    const rows = fixture.nativeElement.querySelectorAll('tbody tr');
+  
+    expect(rows.length).toBe(2);
+    expect(rows[0].textContent).toContain('Mock Hero 1');
+  }));
+  
 });

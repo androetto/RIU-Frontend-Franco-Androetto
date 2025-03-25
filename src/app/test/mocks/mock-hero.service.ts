@@ -5,9 +5,17 @@ export class MockHeroService {
     { id: 1, name: 'Mock Hero 1' },
     { id: 2, name: 'Mock Hero 2' },
   ];
+  private searchText: string = '';
+
+  setFilterText(text: string) {
+    this.searchText = text; 
+  }
 
   getHeroes = () => {
-    return this.heroes;
+    const filter = this.searchText.trim().toLowerCase();
+    return this.heroes.filter(hero =>
+      hero.name.toLowerCase().includes(filter)
+    );
   };
 
   addHero(heroName: string) {
