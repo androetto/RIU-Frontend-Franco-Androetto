@@ -8,14 +8,12 @@ export class MockHeroService {
   private searchText: string = '';
 
   setFilterText(text: string) {
-    this.searchText = text; 
+    this.searchText = text;
   }
 
   getHeroes = () => {
     const filter = this.searchText.trim().toLowerCase();
-    return this.heroes.filter(hero =>
-      hero.name.toLowerCase().includes(filter)
-    );
+    return this.heroes.filter(hero => hero.name.toLowerCase().includes(filter));
   };
 
   addHero(heroName: string) {

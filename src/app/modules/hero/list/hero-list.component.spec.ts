@@ -26,7 +26,6 @@ describe('HeroListComponent', () => {
   let router: Router;
 
   beforeEach(() => {
-    
     TestBed.configureTestingModule({
       imports: [
         MatTableModule,
@@ -112,23 +111,22 @@ describe('HeroListComponent', () => {
     fixture.detectChanges();
     tick();
     const rows = fixture.nativeElement.querySelectorAll('tr');
-    expect(rows.length).toBe(3); 
-    expect(rows[1].textContent).toContain('Mock Hero 1'); 
+    expect(rows.length).toBe(3);
+    expect(rows[1].textContent).toContain('Mock Hero 1');
     expect(rows[2].textContent).toContain('Mock Hero 2');
   }));
-  
+
   it('should filter heroes by search text', fakeAsync(() => {
     const searchInput = fixture.nativeElement.querySelector('input[matInput]');
-    searchInput.value = 'Hero 1'; 
+    searchInput.value = 'Hero 1';
     searchInput.dispatchEvent(new Event('input'));
-  
+
     fixture.detectChanges();
-    tick(); 
-  
+    tick();
+
     const rows = fixture.nativeElement.querySelectorAll('tbody tr');
-  
+
     expect(rows.length).toBe(2);
     expect(rows[0].textContent).toContain('Mock Hero 1');
   }));
-  
 });

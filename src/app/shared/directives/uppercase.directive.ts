@@ -8,9 +8,9 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => UppercaseDirective),
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
 export class UppercaseDirective {
   constructor() {}
@@ -19,12 +19,14 @@ export class UppercaseDirective {
     const input = event.target as HTMLInputElement;
     const uppercasedValue = input.value.toUpperCase();
     input.value = uppercasedValue;
-    this.onChange(uppercasedValue); 
+    this.onChange(uppercasedValue);
   }
 
   writeValue(value: any): void {
     if (value) {
-      const input = document.querySelector('[appUppercase]') as HTMLInputElement;
+      const input = document.querySelector(
+        '[appUppercase]'
+      ) as HTMLInputElement;
       if (input) {
         input.value = value.toUpperCase();
       }
@@ -32,7 +34,7 @@ export class UppercaseDirective {
   }
 
   onChange = (_: any) => {};
-  
+
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
